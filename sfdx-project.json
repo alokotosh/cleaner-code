@@ -1,0 +1,10 @@
+{
+  "packageDirectories": [
+    { "path": "sfdx-source/main", "default": true },
+    { "path": "sfdx-source/fflib"},
+    { "path": "sfdx-source/testbuilder"}
+  ],
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "46.0"
+}
