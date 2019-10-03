@@ -17,13 +17,16 @@ public without sharing class AccountsSelector extends fflib_SObjectSelector{
 	}
 
 
-	public List<Account> byIds(Set<Id> accountIds) {
-		return (List<Account>) Database.query(newQueryFactory().setCondition('Id IN :accountIds').toSOQL());
+	public List<Account> byIds(Set<Id> ids) {
+		return (List<Account>) Database.query(newQueryFactory()
+													.setCondition('Id IN :ids')
+													.toSOQL());
 	}
 
 
-	public List<Account> byParentIds(Set<Id> parentIds) {
-		fflib_QueryFactory factory = newQueryFactory().setCondition('lkp_OrgTeam__c in :parentIds');
-		return (List<Account>) Database.query(factory.toSOQL());
+	public List<Account> byParentIds(Set<Id> ids) {
+		return (List<Account>) Database.query( newQueryFactory()
+													.setCondition('lkp_OrgTeam__c in :ids')
+													.toSOQL() );
 	}
 }

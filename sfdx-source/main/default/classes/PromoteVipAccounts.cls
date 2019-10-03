@@ -1,4 +1,4 @@
-public with sharing class VerifyAccountAddress {
+public with sharing class PromoteVipAccounts {
 
 	// PUBLIC
 

@@ -8,5 +8,6 @@ sfdx force:org:create -a $SCRATCH_ORG_ALIAS -s -f config/project-scratch-def.jso
 sfdx force:source:push
 sfdx force:data:record:update -s User -w "Name='User User'" -v "Languagelocalekey=en_US" -u $SCRATCH_ORG_ALIAS
 sfdx force:org:open
+sfdx force:apex:test:run -u $SCRATCH_ORG_ALIAS -l RunLocalTests -r human
 
 echo "Org is set up"

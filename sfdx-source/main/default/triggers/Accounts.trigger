@@ -1,3 +1,3 @@
-trigger Accounts on Account (before insert, before update, before delete, after insert, after update, after delete, after undelete) {
-
+trigger Accounts on Account (after insert, after update, before insert, before update) {
+	fflib_SObjectDomain.triggerHandler(Accounts.class);
 }
