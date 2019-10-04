@@ -21,15 +21,15 @@ private class UpdateAccountStatus_Test {
         // Setup
         Contact_t jack = new Contact_t().first('Jack').last('Harris');
 
-        Account_t account = new Account_t()
+        Account account = (Account) new Account_t()
                                     .name('Acme Corp')
 
                                     .add( new Opportunity_t()
                                         .amount(1000)
                                         .closes(2019, 12)
-                                        .contact(jack));
+                                        .contact(jack))
         // Exercise
-        account.persist();
+        .persist();
 
 
         // Verify
