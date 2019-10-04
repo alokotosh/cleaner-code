@@ -38,6 +38,38 @@ public class OpportunityTriggerTest {
         }
     }
 
+    public static testMethod void  newNotisceReps() {
+
+        // Create Account
+        Account objAccount = new VC_UnitTestFactory().buildTestAccount();
+        insert objAccount;
+
+        // Create Notice Rep
+        Contact objContact = new VC_UnitTestFactory().buildTenantRep();
+        objContact.Description = 'Notice Representative';
+        insert objContact;
+
+        // Create second Rep
+        Contact objContact2 = new VC_UnitTestFactory().buildTenantRep();
+        objContact2.Description = 'Notice Representative';
+        insert objContact2;
+
+        // Create third Rep
+        Contact objContact3 = new VC_UnitTestFactory().buildTenantRep();
+        objContact3.Description = 'Notice Representative';
+        insert objContact3;
+
+
+        // Create opportunity
+        Opportunity objOpp = new VC_UnitTestFactory().buildTestOpportunity();
+        objOpp.AccountId = objAccount.Id;
+        insert objOpp;
+
+        // Update Opportunity with the selected rep
+        update objOpp;
+
+    }
+
     public static testMethod void  newBillReps() {
 
         // Create Account
@@ -89,28 +121,6 @@ public class OpportunityTriggerTest {
         Contact objContact = new VC_UnitTestFactory().buildTenantRep();
         objContact.Description = 'Legal Representative';
         insert objContact;
-
-        // Create opportunity
-        Opportunity objOpp = new VC_UnitTestFactory().buildTestOpportunity();
-        objOpp.AccountId = objAccount.Id;
-        insert objOpp;
-
-        // Update Opportunity with the selected rep
-        update objOpp;
-
-    }
-
-    public static testMethod void  newNotisceReps() {
-
-        // Create Account
-        Account objAccount = new VC_UnitTestFactory().buildTestAccount();
-        insert objAccount;
-
-        // Create Notice Rep
-        Contact objContact = new VC_UnitTestFactory().buildTenantRep();
-        objContact.Description = 'Notice Representative';
-        insert objContact;
-
 
         // Create opportunity
         Opportunity objOpp = new VC_UnitTestFactory().buildTestOpportunity();
