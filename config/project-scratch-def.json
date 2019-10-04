@@ -1,0 +1,12 @@
+{
+  "orgName": "cleaner-code_DEV",
+  "country": "US",
+  "edition": "Developer",
+  "language": "en_US",
+  "hasSampleData": true,
+  "settings": {
+    "orgPreferenceSettings": {
+      "s1DesktopEnabled": true
+    }
+  }
+}
