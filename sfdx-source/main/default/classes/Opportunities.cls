@@ -23,7 +23,7 @@ public class Opportunities extends fflib_SObjectDomain {
 
     public override void onBeforeUpdate(Map<Id, SObject> old) {
         new UpdateAccountStatus().execute(records);
-        new CalculateLineItemAnalytics().execute(records, old);
+        new CalculateLineItemAnalytics().execute(records);
         new SyncHistoryWithSAP().execute(records);
     }
 
