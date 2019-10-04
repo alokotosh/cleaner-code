@@ -33,7 +33,7 @@ trigger OpportunitiesTrigger on Opportunity (after insert, after update, before 
 
             System.debug('oppsA -- '+ opps.size() );
 
-
+            // TODO: Check for FLS and CRUD
             update opps;
 
         }
@@ -44,6 +44,8 @@ trigger OpportunitiesTrigger on Opportunity (after insert, after update, before 
         if(Trigger.newMap.keySet().size()==1){//FIX
             Set<ID> opIds = Trigger.newMap.keySet();
             Map<String, Id> opUnitMap = new Map<String, Id>();
+
+            // WARNING: This can be dangerous as sometime this is lowercase
             if(!opUnitMap.containsKey('VIP')){
                 opUnitMap.put('VIP', null);
             }
