@@ -19,20 +19,17 @@ private class UpdateAccountStatus_Test {
     private static void toRefreshedOnNewOpportunity() {
 
         // Setup
-        Contact_t jack = new Contact_t().first('Jack').last('Harris');
-
         Account account = (Account) new Account_t()
                                     .name('Acme Corp')
 
                                     .add( new Opportunity_t()
                                         .amount(1000)
-                                        .closes(2019, 12)
-                                        .contact(jack))
+                                        .closes(2019, 12))
         // Exercise
         .persist();
 
 
         // Verify
-        System.assertEquals('Refreshed for ' +  jack.Id, account.BillingState);
+        System.assertEquals('Refreshed', account.BillingState);
     }
 }
