@@ -13,14 +13,16 @@ public class OpportunityTriggerTest {
     // This sometimes happened in the past but we couln't find the root cause :-(
     public static testMethod void  newAuthReps() {
 
-        // Create Account
-        Account objAccount = new VC_UnitTestFactory().buildTestAccount();
-        insert objAccount;
+
 
         // Create Authorised Rep
         Contact objContact = new VC_UnitTestFactory().buildTenantRep();
         objContact.Description = 'Authorised Representative';
         insert objContact;
+
+        // Create Account
+        Account objAccount = new VC_UnitTestFactory().buildTestAccount();
+        insert objAccount;
 
 
         // Create opportunity
