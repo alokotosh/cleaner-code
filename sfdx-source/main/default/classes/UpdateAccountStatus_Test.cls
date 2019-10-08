@@ -11,8 +11,8 @@ private class UpdateAccountStatus_Test {
                             .add( new Opportunity_t()
                                                 .amount(1000)
                                                 .closes(2019, 12))
-                            // Exercise
-                            .persist();
+        // Exercise
+        .persist();
 
 
         // Verify

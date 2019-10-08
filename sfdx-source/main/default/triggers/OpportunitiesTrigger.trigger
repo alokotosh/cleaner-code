@@ -1,12 +1,15 @@
 /*
-    Date        : 19-08-2016
-    Project     : Lease Management System
+    Author      : Martin Mayer
+    Date        : 19-08-2014
+    Project     : Oppty Management System v3
     Description : Defining opportunity trigger
+    Last Updated      : 2017/05/24 VB: Adding before update to handle setting of No Phone on related Contacts
 */
 
 trigger OpportunitiesTrigger on Opportunity (after insert, after update, before update, before insert) {
 
-    // Update LE
+    // Update Opportunity Description after creation. This was a requirement from the first customer workshop to indicate
+    // opptys created by the SAP backend
     if(Trigger.isBefore && (Trigger.isUpdate || Trigger.isInsert)) {
         List <Opportunity> opps = [SELECT Name, Id, Amount FROM Opportunity WHERE Amount != NULL
         LIMIT 200];
@@ -16,6 +19,7 @@ trigger OpportunitiesTrigger on Opportunity (after insert, after update, before 
         update opps;
     }
 
+    // Does this not conflict with the if below (John Doe)
     if(Trigger.isAfter && Trigger.isInsert) {
 
         Set<ID> oppIds = new Set<ID>();
@@ -52,7 +56,9 @@ trigger OpportunitiesTrigger on Opportunity (after insert, after update, before 
         }
     }
 
-    // Set prefered tenant
+    /**
+     *  We need to set the prefered tenant. We use Maps with status key to make sure that we map correctly
+     */
     if(Trigger.isAfter && (Trigger.isUpdate || Trigger.isInsert)) {
 
         Set<ID> opIds = Trigger.newMap.keySet();
