@@ -9,6 +9,8 @@
 @isTest
 public class OpportunityTriggerTest {
 
+    // Test that new authorization reps don't fail on insert.
+    // This sometimes happened in the past but we couln't find the root cause :-(
     public static testMethod void  newAuthReps() {
 
         // Create Account
@@ -46,12 +48,12 @@ public class OpportunityTriggerTest {
 
         // Create Notice Rep
         Contact objContact = new VC_UnitTestFactory().buildTenantRep();
-        objContact.Description = 'Notice Representative';
+        objContact.Description = 'Management Representative';
         insert objContact;
 
         // Create second Rep
         Contact objContact2 = new VC_UnitTestFactory().buildTenantRep();
-        objContact2.Description = 'Notice Representative';
+        objContact2.Description = 'CEO Representative';
         insert objContact2;
 
         // Create third Rep
