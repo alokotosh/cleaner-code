@@ -2,31 +2,35 @@
 private class UpdateAccountStatus_Test {
 
     @IsTest
-    private static void toRefreshedOnNewOpportunity() {
+    private static void toRefreshedOnValidOpportunity() {
 
         // Setup
-        Account account = (Account) new Account_t()
-                            .name('Acme Corp')
+        Contact_t ceo = new Contact_t().first('Jack').last('Harris');
 
-                            .add( new Opportunity_t()
+        Opportunity opp = (Opportunity) new Opportunity_t()
                                                 .amount(1000)
-                                                .closes(2019, 12))
+                                                .closes(2019, 12)
+                                                .contact(ceo)
+                                                .persist();
         // Exercise
-        .persist();
+        new UpdateAccountStatus().execute( new List<Opportunity>{ opp } );
 
 
         // Verify
-        System.assertEquals('Refreshed', account.BillingState);
+        System.assertEquals('Refreshed', [SELECT BillingState FROM Account LIMIT 1].BillingState);
     }
 
 
     @IsTest
     private static void toInvalidOnInvalidOpportunityAmount() {
 
+        // Setup
+        Opportunity opp = (Opportunity) new Opportunity_t()
+                                                .amount(-1000)
+                                                .persist();
+
         // Exercise
-        new Opportunity_t()
-                .amount(-1000)
-                .persist();
+        new UpdateAccountStatus().execute( new List<Opportunity>{ opp } );
 
 
         // Verify
